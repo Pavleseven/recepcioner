@@ -1,0 +1,41 @@
+.div-header {
+  height: 8vh;
+  // background: #ed6c02;
+  // background: #ffaa00;
+  background: #ff9900;
+  box-shadow: 0px 0px 19px -3px #ed6c02;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  nav {
+    display: flex;
+    gap: 15px;
+  }
+  button {
+    background-color: transparent;
+
+    color: rgb(22, 13, 13);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 75px;
+    cursor: pointer;
+  }
+  .log-out {
+    background-color: #fec034;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 75px;
+    cursor: pointer;
+  }
+  img {
+    width: 70px;
+  }
+}

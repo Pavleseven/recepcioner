@@ -1,0 +1,20 @@
+.div-footer {
+  // background: #ED6C02;
+  // background: #ffaa00;
+  background: #ff9900;
+  color: black;
+  display: flex;
+  height: 8vh;
+  justify-content: center;
+  align-items: center;
+  a {
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+    margin-left: 5px;
+    &:hover {
+      // color: yellow;
+      cursor: pointer;
+    }
+  }
+}
