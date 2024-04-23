@@ -98,6 +98,7 @@ function CardContainer({ ride }) {
               fontFamily: "Gagalin",
               margin: "15px auto 15px auto",
             }}
+            onClick={()=>console.log(ride.data.guaranteedSeats,console.log(ride))}
             dangerouslySetInnerHTML={{ __html: ride.data.price }}
           ></div>
           {ride.data.promoCode ? (
@@ -123,6 +124,22 @@ function CardContainer({ ride }) {
           ) : (
             ""
           )}
+          
+          {ride.data.guaranteedSeats ? (
+            <img
+              className="pointer refbutton"
+              style={{
+                width: "150px",
+                marginRight:'20px',
+              }}
+              src={`${process.env.PUBLIC_URL}/seats.svg`}
+              alt="pointer-img"
+             
+            />
+          ) : (
+            ""
+          )}
+          
         </div>
       </div>
 
