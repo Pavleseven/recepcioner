@@ -13,6 +13,7 @@ import Overlay from "./Components/Overlay";
 import Loader from "./Components/Loader";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
+import DashboardPage from "./Pages/DashboardPage";
 const App = () => {
   const theme = createTheme({
     palette: {
@@ -30,6 +31,9 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState(
     JSON.parse(localStorage.getItem("admin"))
   );
+  const [dashboard, setDashboard] = useState(
+    JSON.parse(localStorage.getItem("dashboard"))
+  );
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
@@ -45,6 +49,7 @@ const App = () => {
   const [reservation, setReservation] = useState([]);
   const [totalCoins, setTotalCoins] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [list,setList]=useState([])
   useEffect(() => {
     const fetchAllDocs = async () => {
       const collectionRef = collection(db, "tours2024");
@@ -56,7 +61,6 @@ const App = () => {
       setAllDocs(docsData);
     };
     fetchAllDocs();
-
   }, [freshData]);
 
   useEffect(() => {
@@ -111,6 +115,7 @@ const App = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("admin");
     localStorage.removeItem("userData");
+    localStorage.removeItem("dashboard")
     setIsAdmin(false);
     setUser("");
   };
@@ -141,7 +146,9 @@ const App = () => {
             setReservation,
             totalCoins,
             setTotalCoins,
-            // setShowOverlay,
+            setDashboard,
+            setList,
+            list
           }}
         >
           <ThemeProvider theme={theme}>
@@ -153,6 +160,14 @@ const App = () => {
                     path="*"
                     element={<Navigate to="/admin_page" replace />}
                   />
+                </Routes>
+              ) : dashboard ? (
+                <Routes>
+                  <Route exact path="/dashboardpage" element={<DashboardPage/>} />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/dashboardpage" replace />}
+                  ></Route>
                 </Routes>
               ) : (
                 <Routes>

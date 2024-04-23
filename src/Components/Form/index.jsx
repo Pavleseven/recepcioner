@@ -84,12 +84,33 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       //     ? values.numberOfPassengers * 500
       //     : "",
       userID: uid,
+      provider:window.innerWidth < 700 ? values.provider : false,
       receptionist: window.innerWidth < 700 ? false : values.receptionist,
       prices: prices,
-      ticketPrice:
+      ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
         values.preteens * prices.preteens +
         values.children * prices.children,
+      ticketPriceEuros: values.promoCode
+      ? Math.round(
+          ((values.numberOfPassengers *
+            (prices.adults - (prices.adults && 500)) +
+            values.preteens *
+              (prices.preteens -
+                (prices.preteens && 250)) +
+            values.children *
+              (prices.children -
+                (prices.children && 250))) /
+            EUR) *
+            100
+        ) / 100
+      : Math.round(
+          ((values.numberOfPassengers * prices.adults +
+            values.preteens * prices.preteens +
+            values.children * prices.children) /
+            EUR) *
+            100
+        ) / 100,
       isPaid: values.isPaid,
       id: cardID,
       userEmail: user,
@@ -112,10 +133,30 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       userID: uid,
       receptionist: values.receptionist,
       prices: prices,
-      ticketPrice:
+      ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
         values.preteens * prices.preteens +
         values.children * prices.children,
+        ticketPriceEuros: values.promoCode
+        ? Math.round(
+            ((values.numberOfPassengers *
+              (prices.adults - (prices.adults && 500)) +
+              values.preteens *
+                (prices.preteens -
+                  (prices.preteens && 250)) +
+              values.children *
+                (prices.children -
+                  (prices.children && 250))) /
+              EUR) *
+              100
+          ) / 100
+        : Math.round(
+            ((values.numberOfPassengers * prices.adults +
+              values.preteens * prices.preteens +
+              values.children * prices.children) /
+              EUR) *
+              100
+          ) / 100,
       priceWithDiscount: values.promoCode
         ? values.numberOfPassengers * (prices.adults - (prices.adults && 500)) +
           values.preteens * (prices.preteens - (prices.preteens && 250)) +
@@ -148,6 +189,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
             values.preteens * prices.preteens +
             values.children * prices.children,
       }),
+      
     });
     // if (ride.data.promoCode && !values.promoCode) {
     //   const docRef = doc(db, "users", uid);
@@ -564,7 +606,30 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                         ) : (
                           ""
                         )}
-
+                        {window.innerWidth < 700 ? (
+                          <div style={{ width: "100%" }}>
+                            <h3>
+                              Provider: <span>*</span>
+                            </h3>
+                            <Field
+                              type="text"
+                              name="provider"
+                              placeholder="Provider"
+                              className="form-field"
+                              style={{
+                                backgroundColor: "white",
+                                height: "44px",
+                                fontSize: "20px",
+                                width: "100%",
+                              }}
+                            />
+                            <p className="error-handle">
+                              <ErrorMessage name="provider" />
+                            </p>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <h3>
                           Room number or One name: <span>*</span>
                         </h3>
