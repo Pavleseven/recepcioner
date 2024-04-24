@@ -12,7 +12,8 @@ import { Button } from "@mui/material";
 const WrapperLogin = () => {
   const navigate = useNavigate();
   const adminID = "32HKi0Q7dVQ1zQX4xnhnn1mKNpH3";
-  const { setAccessToken, setIsAdmin, setUser, setUserData, setUid, uid } =
+  const dashboardID= "N5kqITrTw9YNvCYKjYmY6gaRv3z1";
+  const { setAccessToken, setIsAdmin, setUser, setUserData, setUid, uid,setDashboard } =
     useContext(applicationContext);
   const [wrongCredentials, setWrongCredentials] = useState("");
   const defaultLoginValue = {
@@ -58,7 +59,12 @@ const WrapperLogin = () => {
           setIsAdmin(adminID);
           localStorage.setItem("admin", JSON.stringify(adminID));
           navigate("/admin_page");
-        } else navigate("/reservation");
+        } else if(userCredential?.user?.uid === dashboardID){
+          console.log(dashboardID,userCredential.user.uid)
+           setDashboard(dashboardID)
+           localStorage.setItem("dashboard",JSON.stringify(dashboardID))
+           navigate("/dashboardpage")
+        } else navigate("/reservation")
       })
       .catch(() => {
         setWrongCredentials("Please insert correct credentials");
@@ -73,6 +79,15 @@ const WrapperLogin = () => {
         onSubmit={signIn}
       >
         <section>
+        <img
+        src={`${process.env.PUBLIC_URL}/loaderimg.svg`}
+        alt="loader"
+        style={{
+          width: "190px",
+          marginBottom: ".5rem",
+          paddingLeft: "1.5rem",
+        }}
+      />
           <Form>
             <Field
               type="text"

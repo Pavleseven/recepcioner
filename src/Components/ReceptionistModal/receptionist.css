@@ -1,0 +1,15 @@
+/* .li-item {
+    width: 40%;
+}
+.ul-rec{
+    width: 100%;
+    justify-content: center;
+} */
+
+.rec-p{
+    color: #ff9900;
+}
+
+.li-item::marker{
+    color: #ff9900;
+}

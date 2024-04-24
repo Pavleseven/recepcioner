@@ -46,11 +46,11 @@ const CreateAccount = () => {
       });
   };
   return (
-    <div className="div-create-account" style={{ padding: "0.5rem" }}>
-      <button {...getToggleProps()} style={{ padding: "0.5rem" }}>
+    <div className="div-create-account" style={{ padding: "1.5rem" }}>
+      <button {...getToggleProps()} style={{ padding: "1rem" }}>
         {isExpanded
-          ? "Collapse, Vuchko"
-          : "DO YOU WANT TO CREATE ACCOUNT, VUCHKO?"}
+          ? "Close"
+          : "DO YOU WANT TO CREATE ACCOUNT?"}
       </button>
       <section {...getCollapseProps()}>
         <Formik

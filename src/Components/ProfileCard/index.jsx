@@ -87,7 +87,7 @@ function ProfileCard() {
                     className="print-icon"
                     style={{ width: "150px", cursor: "pointer" }}
                   /> */}
-                  <SuccessModal ticketInfo={res.data} buttonMode={true} />
+                  <SuccessModal ticketInfo={res.data} buttonMode={true}/>
                   {res.data.checkedIn ? (
                     <img
                       src={`${process.env.PUBLIC_URL}/checkedin.svg`}

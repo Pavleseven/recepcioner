@@ -43,7 +43,7 @@ function BookModal({ handleBookModal }) {
           <Button
             size="small"
             style={{
-              color: "red",
+              color: "#ff9900",
               alignSelf: "end",
               marginBottom: "13px",
             }}

@@ -13,16 +13,24 @@
 .boat-toggle-div button,
 .past-toggle-div button {
   border: none;
-  padding: 5px;
+  padding: 15px;
   color: rgb(46, 40, 94);
   background-color: rgb(49, 190, 200);
   background: #21307c;
 }
-.boat-toggle-div button.selected,
-.past-toggle-div button.selected {
+.boat-toggle-div button.selected
+ {
   background-color: white;
   box-shadow: 0 0 10px 0 white;
   color: rgb(46, 40, 94);
+}
+
+.past-toggle-div button {
+  background-color: darkblue;
+}
+.past-toggle-div button.selected{
+  background: white;
+  box-shadow: 0 0 10px 0 white;;
 }
 
 .div-admin-tours {

@@ -18,7 +18,7 @@ const Footer = () => {
             style={{
               padding: "10px",
               paddingTop: "13px",
-              backgroundColor: "#FEC034",
+              backgroundColor: "#ffde17",
               borderRadius: "7px",
             }}
             target="_blank"

@@ -3,14 +3,14 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { promoMsg } from "../../msgs";
-function PromoModal({ handlePromo }) {
+function PromoModal({ handlePromo,msg}) {
   const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     maxWidth: "100%",
-    minWidth: 400,
+    minWidth: 300,
     width: "50%",
     bgcolor: "#000000",
     cololr: "#FFF",
@@ -43,14 +43,14 @@ function PromoModal({ handlePromo }) {
             size="small"
             onClick={handlePromo}
             style={{
-              color: "red",
+              color: "#ff9900",
               alignSelf: "end",
               marginBottom: "13px",
             }}
           >
             Close
           </Button>
-          <p>{promoMsg}</p>
+          <p>{msg}</p>
         </div>
       </Box>
     </Modal>

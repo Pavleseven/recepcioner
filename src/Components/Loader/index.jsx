@@ -17,8 +17,19 @@ function Loader({ height }) {
         alignItems: "center",
         background: "#000",
         width: "100%",
+        flexDirection:'column'
       }}
     >
+      //{" "}
+      <img
+        src={`${process.env.PUBLIC_URL}/loaderimg.svg`}
+        alt="loader"
+        style={{
+          width: "190px",
+          marginBottom: ".5rem",
+          paddingLeft: "1.5rem",
+        }}
+      />
       <span class="loader">Loading</span>
     </div>
   );
