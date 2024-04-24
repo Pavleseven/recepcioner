@@ -50,9 +50,9 @@ function CardCarousel({ handleCarousel, itinerary }) {
         </Button>
 
        
-          <div>
-            <img src={itinerary} alt="carousel" className="carousel-img" style={{maxWidth:'100%'}}/>
-          </div>
+          
+            <img src={itinerary} alt="carousel" className="carousel-img"/>
+          
        
       </Box>
     </Modal>
