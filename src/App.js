@@ -14,6 +14,7 @@ import Loader from "./Components/Loader";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import DashboardPage from "./Pages/DashboardPage";
+import ReceptionistModal from "./Components/ReceptionistModal";
 const App = () => {
   const theme = createTheme({
     palette: {
@@ -50,6 +51,7 @@ const App = () => {
   const [totalCoins, setTotalCoins] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [list,setList]=useState([])
+  const [receptionistModal,setReceptionistModal]=useState(false)
   useEffect(() => {
     const fetchAllDocs = async () => {
       const collectionRef = collection(db, "tours2024");
@@ -148,7 +150,9 @@ const App = () => {
             setTotalCoins,
             setDashboard,
             setList,
-            list
+            list,
+            receptionistModal,
+            setReceptionistModal
           }}
         >
           <ThemeProvider theme={theme}>
@@ -189,9 +193,11 @@ const App = () => {
               </Routes>
             )}
           </ThemeProvider>
+          {receptionistModal ? <ReceptionistModal/> : ""}
         </ApplicationProvider>
       </NoInternetConnection>
       {/* {showOverlay ? <Overlay /> : ""} */}
+
     </div>
   );
 };

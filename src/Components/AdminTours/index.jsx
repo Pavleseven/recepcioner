@@ -47,6 +47,7 @@ const AdminTours = ({ handleOpen }) => {
         <button
           className={pastTours ? "selected" : ""}
           onClick={() => setPastTours(!pastTours)}
+         
         >
           Past
         </button>

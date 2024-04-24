@@ -5,7 +5,7 @@ import "./header.scss";
 import "./header.css";
 
 const Header = () => {
-  const { logOut, user, userData, totalCoins } = useContext(applicationContext);
+  const { logOut, user, userData, totalCoins,setReceptionistModal } = useContext(applicationContext);
   const [tooltip, setTooltip] = useState(false);
   const path = useLocation().pathname;
   return (
@@ -69,7 +69,6 @@ const Header = () => {
       ) : (
         ""
       )}
-
       {userData ? (
         <h3 style={{ fontFamily: "Gagalin" }} className="profile-name">
           {userData.full_name.toUpperCase()}
@@ -77,22 +76,32 @@ const Header = () => {
       ) : (
         ""
       )}
+      <img
+        src={`${process.env.PUBLIC_URL}/receptionistlogo.svg`}
+        alt="receptionist"
+        style={{
+          width: "60px",
+          // marginBottom: ".5rem",
+          // paddingLeft: "1.5rem",
+        }}
+        onClick={()=>setReceptionistModal(true)}
+      />
       {(path === "/admin_page" || path === "/reservation") && (
-        // <Link>
-        //   <button className="log-out" onClick={logOut}>
-        //     Log Out
-        //   </button>
-        // </Link>
-        <img
-          src={`${process.env.PUBLIC_URL}/logout.svg`}
-          alt="logout"
-          onClick={logOut}
-          style={{
-            width: "190px",
-            marginBottom: ".5rem",
-            paddingLeft: "1.5rem",
-          }}
-        />
+        <Link>
+          <button className="log-out" onClick={logOut} style={{background:'#ffde17',height:'30px',width:'80px',border:'2px solid black'}}>
+            Log Out
+          </button>
+        </Link>
+        // <img
+        //   src={`${process.env.PUBLIC_URL}/logout.svg`}
+        //   alt="logout"
+        //   onClick={logOut}
+        //   style={{
+        //     width: "190px",
+        //     marginBottom: ".5rem",
+        //     paddingLeft: "1.5rem",
+        //   }}
+        // />
       )}
     </div>
   );

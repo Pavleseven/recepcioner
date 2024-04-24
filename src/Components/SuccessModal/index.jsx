@@ -33,19 +33,23 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
           >
             Napomena : Ovo nije fiskalni racun
           </Text>
-          <Text style={styles.meetTitle}>Meeting point address:</Text>
+          <Text style={styles.meetTitle}> Meeting point address: </Text>
           <Text style={styles.meetAddress} wrap>
-            Main entrance of Kalemegdan park from Knez Mihailova
+            {ticketInfo.meetingPoint}
           </Text>
-          <Text style={styles.meetAddress}> Pariska 15, Belgrade</Text>
-          <Text style={styles.scanqr}>Scan or click QR code for location</Text>
-          <Link
-            style={styles.qrCode}
-            target="_blank"
-            src="https://maps.app.goo.gl/Vs3wHRYBbjiWvgtYA?g_st=ic"
-          >
-            <Image src={qrCode} />
-          </Link>
+          {/* <Text style={styles.meetAddress}> Pariska 15, Belgrade</Text> */}
+          {ticketInfo.meetingPoint === "In front of your Hotel" ? '' :<Text style={styles.scanqr}>Scan or click QR code for location</Text>}
+          {ticketInfo.meetingPoint === "In front of your Hotel" ? (
+            ""
+          ) : (
+            <Link
+              style={styles.qrCode}
+              target="_blank"
+              src={ticketInfo.meetLink || "#"}
+            >
+              <Image src={qrCode} />
+            </Link>
+          )}
           <Text style={styles.meetPointTime}>
             {"Meeting point time: " + meetingTime} h
           </Text>
@@ -161,7 +165,7 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
           </Text>
           <Image style={{ width: "95%", marginTop: "5px" }} src={barcode} />
         </View>
-        <Text style={{ textAlign: "center" }}>cruisebelgrade.com </Text>
+        <Text style={{ textAlign: "center" }}>serbiatour.com </Text>
         <Text
           style={{ textAlign: "center", fontSize: "10px", marginTop: "5px" }}
         >
@@ -170,19 +174,21 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
       </Page>
     </Document>
   );
-  return (buttonMode ?  <BlobProvider document={Tiketino}>
-          {({ blob, url, loading, error }) => {
-            return (
-              <img
-    src={`${process.env.PUBLIC_URL}/printdugme.svg`}
-    alt="print"
-    onClick={() => window.open(url, "_blank")}
-    className="print-icon"
-    style={{ width: "150px", cursor: "pointer" }}
-  />
-            );
-          }}
-        </BlobProvider> :
+  return buttonMode ? (
+    <BlobProvider document={Tiketino}>
+      {({ blob, url, loading, error }) => {
+        return (
+          <img
+            src={`${process.env.PUBLIC_URL}/printdugme.svg`}
+            alt="print"
+            onClick={() => window.open(url, "_blank")}
+            className="print-icon"
+            style={{ width: "150px", cursor: "pointer" }}
+          />
+        );
+      }}
+    </BlobProvider>
+  ) : (
     <div className="successModal" onClick={() => setSuccess(false)}>
       <div onClick={(e) => e.stopPropagation()}>
         <BlobProvider document={Tiketino}>

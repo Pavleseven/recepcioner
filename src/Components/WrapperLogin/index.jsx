@@ -79,6 +79,15 @@ const WrapperLogin = () => {
         onSubmit={signIn}
       >
         <section>
+        <img
+        src={`${process.env.PUBLIC_URL}/loaderimg.svg`}
+        alt="loader"
+        style={{
+          width: "190px",
+          marginBottom: ".5rem",
+          paddingLeft: "1.5rem",
+        }}
+      />
           <Form>
             <Field
               type="text"

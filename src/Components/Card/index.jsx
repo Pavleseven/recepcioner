@@ -4,15 +4,22 @@ import { applicationContext, bookingContext } from "../../context";
 import CardCarousel from "../CardCarousel";
 import PromoModal from "../PromoModal";
 import BookModal from "../bookModal";
-
+import { guaranteedMsg } from "../../msgs";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-
+import { promoMsg } from "../../msgs";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
+import ReceptionistModal from "../ReceptionistModal";
 
 function CardContainer({ ride }) {
-  const { allDocs, rides, setShowOverlay } = useContext(applicationContext);
+  const {
+    allDocs,
+    rides,
+    setShowOverlay,
+    receptionistModal,
+    
+  } = useContext(applicationContext);
   const { setAvailableDates, setSelectedId, setSelectedRide, selectedRide } =
     useContext(bookingContext);
   const [openBooking, setOpenBooking] = useState("");
@@ -20,8 +27,12 @@ function CardContainer({ ride }) {
   const cardRef = useRef();
   const [carousel, showCarousel] = useState(false);
   const [promoModal, setPromoModal] = useState(false);
+  const [itineraryModal, setItineraryModal] = useState(false);
   const [showBookModal, setShowBookModal] = useState(false);
   const [phoneDialog, setPhoneDialog] = useState(false);
+  const guaranteedModal = function () {
+    setItineraryModal((prev) => !prev);
+  };
   const handleBookModal = function () {
     setShowBookModal((prev) => !prev);
   };
@@ -32,6 +43,7 @@ function CardContainer({ ride }) {
   const handlePromo = function () {
     setPromoModal((prev) => !prev);
   };
+
   const handleImageClick = (selectedBoat) => {
     const dates = allDocs
       ?.filter((e) => e.data.boat === selectedBoat)
@@ -51,18 +63,21 @@ function CardContainer({ ride }) {
     } else {
       setOpenBooking("");
     }
-
   };
   return (
     <>
       <div className="card" ref={cardRef}>
-        <img
-          className="pointer"
-          style={{ width: "80px", position: "absolute" }}
-          src={`${process.env.PUBLIC_URL}/gallery.svg`}
-          alt="pointer-img"
-          onClick={handleCarousel}
-        />
+        {ride.data.itinerary ? (
+          <img
+            className="pointer"
+            style={{ width: "80px", position: "absolute" }}
+            src={`${process.env.PUBLIC_URL}/itinerarycircle.svg`}
+            alt="pointer-img"
+            onClick={handleCarousel}
+          />
+        ) : (
+          ""
+        )}
 
         <img src={ride.data.image} alt={ride.data.name} key={ride.id} />
         <hr />
@@ -98,7 +113,9 @@ function CardContainer({ ride }) {
               fontFamily: "Gagalin",
               margin: "15px auto 15px auto",
             }}
-            onClick={()=>console.log(ride.data.guaranteedSeats,console.log(ride))}
+            onClick={() =>
+              console.log(ride.data.guaranteedSeats, console.log(ride))
+            }
             dangerouslySetInnerHTML={{ __html: ride.data.price }}
           ></div>
           {ride.data.promoCode ? (
@@ -124,22 +141,21 @@ function CardContainer({ ride }) {
           ) : (
             ""
           )}
-          
+
           {ride.data.guaranteedSeats ? (
             <img
               className="pointer refbutton"
               style={{
-                width: "150px",
-                marginRight:'20px',
+                width: "130px",
+                marginRight: "20px",
               }}
               src={`${process.env.PUBLIC_URL}/seats.svg`}
               alt="pointer-img"
-             
+              onClick={guaranteedModal}
             />
           ) : (
             ""
           )}
-          
         </div>
       </div>
 
@@ -214,7 +230,7 @@ function CardContainer({ ride }) {
             </>
           ) : (
             <a
-              href="tel:063-319-913"
+              href="tel:+381693339696"
               style={{
                 width: "40%",
               }}
@@ -241,16 +257,25 @@ function CardContainer({ ride }) {
       ) : (
         ""
       )}
-      {carousel && ride.data.carouselContent ? (
+      {carousel && ride.data.itinerary ? (
         <CardCarousel
           handleCarousel={handleCarousel}
-          content={ride.data.carouselContent}
-          type={ride.data.carouselType}
+          itinerary={ride.data.itinerary}
         />
       ) : (
         ""
       )}
-      {promoModal ? <PromoModal handlePromo={handlePromo} /> : ""}
+      {promoModal ? (
+        <PromoModal handlePromo={handlePromo} msg={promoMsg} />
+      ) : (
+        ""
+      )}
+      {itineraryModal ? (
+        <PromoModal handlePromo={guaranteedModal} msg={guaranteedMsg} />
+      ) : (
+        ""
+      )}
+      
     </>
   );
 }

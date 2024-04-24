@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../CardCarousel/carousel.css";
 import Button from "@mui/material/Button";
 import { imgs } from "./imgs";
-function CardCarousel({ handleCarousel, content, type }) {
+function CardCarousel({ handleCarousel, itinerary }) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -49,19 +49,11 @@ function CardCarousel({ handleCarousel, content, type }) {
           Close
         </Button>
 
-        <Carousel className="carousel" dynamicHeight>
-          {content.map((imgString) => {
-            return (
-              <div>
-                <img
-                  src={`${process.env.PUBLIC_URL}/${type}/${imgString}.JPG`}
-                  alt="carousel"
-                  className="carousel-img"
-                />
-              </div>
-            );
-          })}
-        </Carousel>
+       
+          <div>
+            <img src={itinerary} alt="carousel" className="carousel-img" style={{maxWidth:'100%'}}/>
+          </div>
+       
       </Box>
     </Modal>
   );

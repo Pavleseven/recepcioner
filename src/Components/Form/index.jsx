@@ -86,6 +86,8 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       userID: uid,
       provider:window.innerWidth < 700 ? values.provider : false,
       receptionist: window.innerWidth < 700 ? false : values.receptionist,
+      meetingPoint: ride.data.meetinPoint,
+      meetLink:ride.data.meetLink || '#',
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
@@ -132,6 +134,8 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       //     : "",
       userID: uid,
       receptionist: values.receptionist,
+      meetingPoint:ride.data.meetinPoint,
+      meetLink:ride.data.meetLink || "#",
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
@@ -438,6 +442,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                           variant="contained"
                           onClick={() => {
                             setFreshData(!freshData);
+                            console.log(ride)
                           }}
                           size="large"
                           style={{ width: "100%" }}
@@ -704,7 +709,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                               value="true"
                             />
                           </label>
-                          {ride.data.beforeBooking ? (
+                          {ride.data.beforeBooking || ride.data.hastopay ? (
                             ""
                           ) : (
                             <label
