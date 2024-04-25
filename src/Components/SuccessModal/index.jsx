@@ -13,6 +13,8 @@ import {
   // Font
 } from "@react-pdf/renderer";
 import qrCode from "../../assets/qr-code.jpg";
+import bus1Code from "../../assets/belgradeopenbus1.png";
+import bus2Code from "../../assets/bgopenbus2qr.png";
 import barcode from "../../assets/barcode.png";
 import dayjs from "dayjs";
 import { styles } from "./cardHelpers";
@@ -21,7 +23,9 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
   const { userData } = useContext(applicationContext);
 
   const tourDate = new Date(ticketInfo.date);
-  const meetingTime = dayjs(new Date(tourDate - 1800000)).format("HH:mm");
+  const meetingTime = dayjs(
+    new Date(tourDate - ticketInfo.meetTime || 1800000)
+  ).format("HH:mm");
   const currentDate = dayjs(new Date()).format("DD-MM-YYYY HH:mm");
 
   const Tiketino = (
@@ -38,7 +42,13 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
             {ticketInfo.meetingPoint}
           </Text>
           {/* <Text style={styles.meetAddress}> Pariska 15, Belgrade</Text> */}
-          {ticketInfo.meetingPoint === "In front of your Hotel" ? '' :<Text style={styles.scanqr}>Scan or click QR code for location</Text>}
+          {ticketInfo.meetingPoint === "In front of your Hotel" ? (
+            ""
+          ) : (
+            <Text style={styles.scanqr}>
+              Scan or click QR code for location
+            </Text>
+          )}
           {ticketInfo.meetingPoint === "In front of your Hotel" ? (
             ""
           ) : (
@@ -47,7 +57,15 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
               target="_blank"
               src={ticketInfo.meetLink || "#"}
             >
-              <Image src={qrCode} />
+              <Image
+                src={
+                  ticketInfo?.boat === "Belgrade Open Bus"
+                    ? bus2Code
+                    : ticketInfo.boat === "Belgrade Open Bus Morning"
+                    ? bus1Code
+                    : qrCode
+                }
+              />
             </Link>
           )}
           <Text style={styles.meetPointTime}>

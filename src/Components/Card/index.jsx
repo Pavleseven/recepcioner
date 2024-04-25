@@ -71,7 +71,7 @@ function CardContainer({ ride }) {
           <img
             className="pointer"
             style={{ width: "80px", position: "absolute" }}
-            src={`${process.env.PUBLIC_URL}/itinerarycircle.svg`}
+            src={`${process.env.PUBLIC_URL}/infosvg.svg`}
             alt="pointer-img"
             onClick={handleCarousel}
           />
@@ -120,7 +120,7 @@ function CardContainer({ ride }) {
           ></div>
           {ride.data.promoCode ? (
             <img
-              src={`${process.env.PUBLIC_URL}/promodugme2.png`}
+              src={`${process.env.PUBLIC_URL}/promonew.svg`}
               alt=""
               style={{ width: "150px", cursor: "pointer" }}
               onClick={handlePromo}
@@ -146,10 +146,10 @@ function CardContainer({ ride }) {
             <img
               className="pointer refbutton"
               style={{
-                width: "130px",
+                width: "155px",
                 marginRight: "20px",
               }}
-              src={`${process.env.PUBLIC_URL}/seats.svg`}
+              src={`${process.env.PUBLIC_URL}/newseats.svg`}
               alt="pointer-img"
               onClick={guaranteedModal}
             />

@@ -19,7 +19,7 @@ const DatePickerField = ({name, value, onChange}) => {
       onChange={(e)=> 
         onChange('date', e)}
         plugins={[
-          <TimePicker position="bottom" hStep={1} mStep={30} hideSeconds/>,
+          <TimePicker position="bottom" hStep={1} mStep={15} hideSeconds/>,
           <DatePanel />
         ]}
       />

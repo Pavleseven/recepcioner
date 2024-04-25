@@ -80,7 +80,7 @@ const Header = () => {
         src={`${process.env.PUBLIC_URL}/receptionistlogo.svg`}
         alt="receptionist"
         style={{
-          width: "60px",
+          width: "50px",
           // marginBottom: ".5rem",
           // paddingLeft: "1.5rem",
         }}

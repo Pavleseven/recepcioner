@@ -32,6 +32,7 @@ function ReceptionistModal({}) {
       aria-describedby="modal-modal-description"
       style={{ overflow: "scroll", outline: "none" }}
       fullWidth={true}
+      onClick={() => setReceptionistModal(false)}
     >
       <Box sx={style}>
         <div
@@ -70,7 +71,7 @@ function ReceptionistModal({}) {
                 <p className="rec-p">Key Cruise</p>
                 <ul>
                   <li>odrasli: 400 dinara</li>
-                  <li>deca 8-12: 250 dinara</li>
+                  <li>deca 8-12 godina: 200 dinara</li>
                 </ul>
               </li>
 
@@ -85,7 +86,7 @@ function ReceptionistModal({}) {
                 <p className="rec-p">Belgrade Open-Bus</p>
                 <ul>
                   <li>odrasli:300 dinara</li>
-                  <li>deca 0-12:150 dinara</li>
+                  <li>deca 0-12 godina:150 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
@@ -104,14 +105,14 @@ function ReceptionistModal({}) {
                 <p className="rec-p">Drvengrad & Sargan train</p>
                 <ul>
                   <li>odrasli: 1500 dinara</li>
-                  <li>deca 0-12: 1000 dinara</li>
+                  <li>deca 0-12 godina: 1000 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
                 <p className="rec-p">Novi Sad & Sremski Karlovci</p>
                 <ul>
                   <li>odrasli: 1200 dinara</li>
-                  <li>deca: 0-12: 600 dinara</li>
+                  <li>deca: 0-12 godina: 600 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
@@ -125,7 +126,7 @@ function ReceptionistModal({}) {
                 <p className="rec-p">Bohemian Nights</p>
                 <ul>
                   <li>odrasli:900 dinara</li>
-                  <li>deca 0-12: 750 dinara</li>
+                  <li>deca 0-12 godina: 750 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
@@ -139,7 +140,7 @@ function ReceptionistModal({}) {
                 <p className="rec-p">Belgrade Big City Tour</p>
                 <ul>
                   <li>odrasli: 1300 dinara</li>
-                  <li>deca 0-12: 650 dinara</li>
+                  <li>deca 0-12 godina: 650 dinara</li>
                 </ul>
               </li>
             </ul>

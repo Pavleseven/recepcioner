@@ -84,35 +84,32 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       //     ? values.numberOfPassengers * 500
       //     : "",
       userID: uid,
-      provider:window.innerWidth < 700 ? values.provider : false,
+      provider: window.innerWidth < 700 ? values.provider : false,
       receptionist: window.innerWidth < 700 ? false : values.receptionist,
       meetingPoint: ride.data.meetinPoint,
-      meetLink:ride.data.meetLink || '#',
+      meetLink: ride.data.meetLink || "#",
+      meetTime: ride.data.meetTime || 0,
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
         values.preteens * prices.preteens +
         values.children * prices.children,
       ticketPriceEuros: values.promoCode
-      ? Math.round(
-          ((values.numberOfPassengers *
-            (prices.adults - (prices.adults && 500)) +
-            values.preteens *
-              (prices.preteens -
-                (prices.preteens && 250)) +
-            values.children *
-              (prices.children -
-                (prices.children && 250))) /
-            EUR) *
-            100
-        ) / 100
-      : Math.round(
-          ((values.numberOfPassengers * prices.adults +
-            values.preteens * prices.preteens +
-            values.children * prices.children) /
-            EUR) *
-            100
-        ) / 100,
+        ? Math.round(
+            ((values.numberOfPassengers *
+              (prices.adults - (prices.adults && 500)) +
+              values.preteens * (prices.preteens - (prices.preteens && 250)) +
+              values.children * (prices.children - (prices.children && 250))) /
+              EUR) *
+              100
+          ) / 100
+        : Math.round(
+            ((values.numberOfPassengers * prices.adults +
+              values.preteens * prices.preteens +
+              values.children * prices.children) /
+              EUR) *
+              100
+          ) / 100,
       isPaid: values.isPaid,
       id: cardID,
       userEmail: user,
@@ -134,23 +131,20 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       //     : "",
       userID: uid,
       receptionist: values.receptionist,
-      meetingPoint:ride.data.meetinPoint,
-      meetLink:ride.data.meetLink || "#",
+      meetingPoint: ride.data.meetinPoint,
+      meetLink: ride.data.meetLink || "#",
+      meetTime: ride.data.meetTime || 0,
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
         values.preteens * prices.preteens +
         values.children * prices.children,
-        ticketPriceEuros: values.promoCode
+      ticketPriceEuros: values.promoCode
         ? Math.round(
             ((values.numberOfPassengers *
               (prices.adults - (prices.adults && 500)) +
-              values.preteens *
-                (prices.preteens -
-                  (prices.preteens && 250)) +
-              values.children *
-                (prices.children -
-                  (prices.children && 250))) /
+              values.preteens * (prices.preteens - (prices.preteens && 250)) +
+              values.children * (prices.children - (prices.children && 250))) /
               EUR) *
               100
           ) / 100
@@ -193,7 +187,6 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
             values.preteens * prices.preteens +
             values.children * prices.children,
       }),
-      
     });
     // if (ride.data.promoCode && !values.promoCode) {
     //   const docRef = doc(db, "users", uid);
@@ -442,7 +435,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                           variant="contained"
                           onClick={() => {
                             setFreshData(!freshData);
-                            console.log(ride)
+                            console.log(ride);
                           }}
                           size="large"
                           style={{ width: "100%" }}
