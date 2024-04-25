@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/recepcioner/static/css/main.3619e9a5.css",
-    "main.js": "/recepcioner/static/js/main.fbb6c305.js",
+    "main.css": "/recepcioner/static/css/main.51906091.css",
+    "main.js": "/recepcioner/static/js/main.9fede171.js",
     "static/media/rs.svg": "/recepcioner/static/media/rs.592a16061fdb260df109.svg",
     "static/media/ac.svg": "/recepcioner/static/media/ac.8ec787f3e0499dd23f4c.svg",
     "static/media/bo.svg": "/recepcioner/static/media/bo.524f603b8c770d1ba57a.svg",
@@ -46,6 +46,8 @@
     "static/media/bn.svg": "/recepcioner/static/media/bn.6053afa4730ff0ece6c7.svg",
     "static/media/pn.svg": "/recepcioner/static/media/pn.b6d5968b108c0e9a7b49.svg",
     "static/media/sx.svg": "/recepcioner/static/media/sx.c3e3382c50cdc9150344.svg",
+    "static/media/bgopenbus2qr.png": "/recepcioner/static/media/bgopenbus2qr.0abb7757a9a4e1132fe5.png",
+    "static/media/belgradeopenbus1.png": "/recepcioner/static/media/belgradeopenbus1.3fd80f269feb618f5579.png",
     "static/media/aw.svg": "/recepcioner/static/media/aw.5833f1365defb17730fc.svg",
     "static/media/md.svg": "/recepcioner/static/media/md.b51b6be960f624fb9814.svg",
     "static/media/lk.svg": "/recepcioner/static/media/lk.fd529379b814c9d95d49.svg",
@@ -273,11 +275,11 @@
     "static/media/bd.svg": "/recepcioner/static/media/bd.0ad8c443ef4d47ea0497.svg",
     "static/media/pe.svg": "/recepcioner/static/media/pe.d64e9732fcaa8f765994.svg",
     "static/media/id.svg": "/recepcioner/static/media/id.f624e2c8444a7794b357.svg",
-    "main.3619e9a5.css.map": "/recepcioner/static/css/main.3619e9a5.css.map",
-    "main.fbb6c305.js.map": "/recepcioner/static/js/main.fbb6c305.js.map"
+    "main.51906091.css.map": "/recepcioner/static/css/main.51906091.css.map",
+    "main.9fede171.js.map": "/recepcioner/static/js/main.9fede171.js.map"
   },
   "entrypoints": [
-    "static/css/main.3619e9a5.css",
-    "static/js/main.fbb6c305.js"
+    "static/css/main.51906091.css",
+    "static/js/main.9fede171.js"
   ]
 }
