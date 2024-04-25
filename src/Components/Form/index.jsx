@@ -133,7 +133,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       receptionist: values.receptionist,
       meetingPoint: ride.data.meetinPoint,
       meetLink: ride.data.meetLink || "#",
-      meetTime: ride.data.meetTime || 0,
+      meetTime: ride.data.meetTime || 1800000,
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
@@ -657,7 +657,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                             name="promoCode"
                           >
                             <label htmlFor="promoCode">
-                              Special Promo
+                               Promo
                               <Field
                                 type="checkbox"
                                 id="promoCode"
