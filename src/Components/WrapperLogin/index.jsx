@@ -11,7 +11,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { Button } from "@mui/material";
 const WrapperLogin = () => {
   const navigate = useNavigate();
-  const adminID = "32HKi0Q7dVQ1zQX4xnhnn1mKNpH3";
+  const adminID = "hGzot9LemifKrr4kjD51S2rE4dc2";
   const dashboardID= "N5kqITrTw9YNvCYKjYmY6gaRv3z1";
   const { setAccessToken, setIsAdmin, setUser, setUserData, setUid, uid,setDashboard } =
     useContext(applicationContext);

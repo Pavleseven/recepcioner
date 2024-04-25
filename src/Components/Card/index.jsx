@@ -122,7 +122,7 @@ function CardContainer({ ride }) {
             <img
               src={`${process.env.PUBLIC_URL}/promonew.svg`}
               alt=""
-              style={{ width: "150px", cursor: "pointer" }}
+              style={{ width: "100px", cursor: "pointer" }}
               onClick={handlePromo}
             />
           ) : (
@@ -132,7 +132,7 @@ function CardContainer({ ride }) {
             <img
               className="pointer refbutton"
               style={{
-                width: "150px",
+                width: "130px",
               }}
               src={`${process.env.PUBLIC_URL}/b4booknow.svg`}
               alt="pointer-img"
@@ -146,7 +146,7 @@ function CardContainer({ ride }) {
             <img
               className="pointer refbutton"
               style={{
-                width: "155px",
+                width: "100px",
                 marginRight: "20px",
               }}
               src={`${process.env.PUBLIC_URL}/newseats.svg`}
@@ -177,7 +177,7 @@ function CardContainer({ ride }) {
             className="pointer refbutton"
             onClick={() => handleImageClick(ride.id)}
             style={{
-              width: ride.data.beforeBooking ? "60%" : "80%",
+              width: ride.data.beforeBooking ? "55%" : "75%",
               margin: ride.data.beforeBooking ? "" : "15px auto",
               display: "block",
             }}
@@ -206,7 +206,7 @@ function CardContainer({ ride }) {
                 src={`${process.env.PUBLIC_URL}/callhere.svg`}
                 alt="pointer-img"
                 style={{
-                  width: "40%",
+                  width: "35%",
                 }}
                 onClick={() => setPhoneDialog(true)}
               />
