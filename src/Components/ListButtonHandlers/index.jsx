@@ -27,10 +27,10 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
     setOpen(false);
   };
   const handleUpdate = async () => {
-    const docRef = doc(db, "tickets2024", ticketID);
+    const docRef = doc(db, "ticketspavle", ticketID);
     const docSnap = await getDoc(docRef);
     const docsData = docSnap.data();
-    await updateDoc(doc(db, "tickets2024", ticketID), {
+    await updateDoc(doc(db, "ticketspavle", ticketID), {
       paidWithDinars: typeOfCurrency === "Dinarima" ? true : false,
       paidWithEuros: typeOfCurrency === "EUR" ? true : false,
     });

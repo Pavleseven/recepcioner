@@ -35,7 +35,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
 
   const handleSubmit = async (values, { resetForm }) => {
     const tour = selectedTour;
-    const tourRef = doc(db, "tours2024", tour.id);
+    const tourRef = doc(db, "tourspavle", tour.id);
     const docSnap = await getDoc(tourRef);
     tour.data = docSnap.data();
 
@@ -56,7 +56,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
         .map(() => Math.floor(Math.random() * 16).toString(16))
         .join("");
     const cardID = genRanHex(6);
-    const docRef = doc(db, "tickets2024", "" + cardID);
+    const docRef = doc(db, "ticketspavle", "" + cardID);
     setDoc(docRef, {
       ...ticketInfo,
       boat: selectedRide.data.name,
@@ -657,7 +657,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                             name="promoCode"
                           >
                             <label htmlFor="promoCode">
-                               Promo
+                              Promo
                               <Field
                                 type="checkbox"
                                 id="promoCode"

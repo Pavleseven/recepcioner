@@ -18,7 +18,7 @@ function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchAllDocs = async () => {
-      const collectionRef = collection(db, "tickets2024");
+      const collectionRef = collection(db, "ticketspavle");
       const querySnapshot = await getDocs(collectionRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,

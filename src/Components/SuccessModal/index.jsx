@@ -24,7 +24,7 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
   console.log(ticketInfo)
   const tourDate = new Date(ticketInfo.date);
   const meetingTime = dayjs(
-    new Date(tourDate - ticketInfo.meetTime)
+    new Date(tourDate - (ticketInfo.meetTime || 1800000))
   ).format("HH:mm");
   const currentDate = dayjs(new Date()).format("DD-MM-YYYY HH:mm");
 

@@ -26,6 +26,9 @@ const App = () => {
         main: "#9C294B",
         dark: "#9C294B",
       },
+      green: {
+        main: "#00e676",
+      },
     },
   });
   const [freshData, setFreshData] = useState(false);
@@ -50,11 +53,11 @@ const App = () => {
   const [reservation, setReservation] = useState([]);
   const [totalCoins, setTotalCoins] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [list,setList]=useState([])
-  const [receptionistModal,setReceptionistModal]=useState(false)
+  const [list, setList] = useState([]);
+  const [receptionistModal, setReceptionistModal] = useState(false);
   useEffect(() => {
     const fetchAllDocs = async () => {
-      const collectionRef = collection(db, "tours2024");
+      const collectionRef = collection(db, "tourspavle");
       const querySnapshot = await getDocs(collectionRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -117,7 +120,7 @@ const App = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("admin");
     localStorage.removeItem("userData");
-    localStorage.removeItem("dashboard")
+    localStorage.removeItem("dashboard");
     setIsAdmin(false);
     setUser("");
   };
@@ -152,7 +155,7 @@ const App = () => {
             setList,
             list,
             receptionistModal,
-            setReceptionistModal
+            setReceptionistModal,
           }}
         >
           <ThemeProvider theme={theme}>
@@ -167,7 +170,11 @@ const App = () => {
                 </Routes>
               ) : dashboard ? (
                 <Routes>
-                  <Route exact path="/dashboardpage" element={<DashboardPage/>} />
+                  <Route
+                    exact
+                    path="/dashboardpage"
+                    element={<DashboardPage />}
+                  />
                   <Route
                     path="*"
                     element={<Navigate to="/dashboardpage" replace />}
@@ -193,11 +200,10 @@ const App = () => {
               </Routes>
             )}
           </ThemeProvider>
-          {receptionistModal ? <ReceptionistModal/> : ""}
+          {receptionistModal ? <ReceptionistModal /> : ""}
         </ApplicationProvider>
       </NoInternetConnection>
       {/* {showOverlay ? <Overlay /> : ""} */}
-
     </div>
   );
 };

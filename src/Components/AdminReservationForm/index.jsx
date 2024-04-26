@@ -46,7 +46,7 @@ const AdminReservationForm = () => {
         " ",
         "-"
       )}-${Math.floor(Math.random() * 1000000000)}`;
-      const docRef = doc(db, "tours2024", "" + tourID);
+      const docRef = doc(db, "tourspavle", "" + tourID);
       setDoc(docRef, {
         boat: values.boat,
         date: `${singleDate}`,

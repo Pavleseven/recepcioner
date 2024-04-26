@@ -15,7 +15,7 @@ const AdminTours = ({ handleOpen }) => {
   const [selectedBoat, setSelectedBoat] = useState(boats[0]);
   const [pastTours, setPastTours] = useState(false);
   const handleDelete = async (e) => {
-    await deleteDoc(doc(db, "tours2024", e.id));
+    await deleteDoc(doc(db, "tourspavle", e.id));
     setFreshData(!freshData);
   };
   const filteredDocs = allDocs

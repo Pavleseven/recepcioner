@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ModifyButton } from "../ModifyButton";
+
 function TourB({ handleCheckIn, handleNotShown, e }) {
   const [showMod, setShowMod] = useState(true);
   return (
@@ -17,6 +18,7 @@ function TourB({ handleCheckIn, handleNotShown, e }) {
             handler={() => handleCheckIn(e, e.id)}
             mod="Checked In"
             setShowMod={setShowMod}
+            color='success'
           />
           <ModifyButton
             handler={() => handleNotShown(e.id)}
@@ -25,7 +27,7 @@ function TourB({ handleCheckIn, handleNotShown, e }) {
           />
         </>
       ) : (
-        <p>This Reservation has already been reviewed.</p>
+        <p style={{textAlign:'center',padding:'.5rem', background:'green',marginTop:'.5rem',width:'100%'}}>This Reservation has already been reviewed.</p>
       )}
     </div>
   );
