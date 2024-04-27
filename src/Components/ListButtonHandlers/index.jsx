@@ -15,10 +15,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
   const [open, setOpen] = React.useState(false);
   const [typeOfCurrency, setTypeOfCurrency] = React.useState("");
-  const [showPayment, setShowPayment] = useLocalStorage(
-    ticketID,
-    typeOfCurrency
-  );
+  const [showPayment, setShowPayment] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -38,13 +35,13 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
     console.log(ticketID);
     console.log(typeOfCurrency);
     setOpen(false);
-    setShowPayment(typeOfCurrency);
+    setShowPayment(true);
   };
 
   return (
     <>
       {!showPayment ? (
-        <div style={{display:'flex',alignItems:'center',gap:'1rem'}}>
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <select
             name="currency"
             id=""
@@ -53,7 +50,7 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
                 setTypeOfCurrency(e.target.value);
               }
             }}
-            style={{padding:'.7rem',margin:'0'}}
+            style={{ padding: ".7rem", margin: "0" }}
           >
             <option value="select">Select</option>
             <option value="Dinarima">Dinari</option>
@@ -64,7 +61,6 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
             onClick={handleClickOpen}
             style={{ padding: ".5rem" }}
             color="warning"
-            
           >
             {mod}
           </Button>
@@ -92,7 +88,16 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
           </Dialog>
         </div>
       ) : (
-        <p style={{ background:'green',padding:'1rem',color:'white',fontWeight:'500'}}>Placeno u {showPayment}</p>
+        <p
+          style={{
+            background: "green",
+            padding: "1rem",
+            color: "white",
+            fontWeight: "500",
+          }}
+        >
+          Placeno u {typeOfCurrency}
+        </p>
       )}
     </>
   );

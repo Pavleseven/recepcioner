@@ -24,15 +24,18 @@ function ProfilePage() {
         id: doc.id,
         data: doc.data(),
       }));
-      const data = docsData.filter((data) => {
-        return data.data.userEmail === user;
-      });
+      const data = docsData
+        .filter((data) => {
+          // return data.data.userEmail.toLowerCase() === user.toLowerCase();
+          return data.data.userID === uid;
+        })
+        .slice(0, 30);
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       const docsData2 = docSnap.data();
-      console.log(data);
+      console.log(docsData);
       setReservation(data);
-   
+      console.log(user);
       setTotalCoins(docsData2.coins + docsData2.freeCoins);
     };
 

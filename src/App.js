@@ -119,8 +119,9 @@ const App = () => {
     setAccessToken("");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("admin");
-    localStorage.removeItem("userData");
     localStorage.removeItem("dashboard");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("uid");
     setIsAdmin(false);
     setUser("");
   };
