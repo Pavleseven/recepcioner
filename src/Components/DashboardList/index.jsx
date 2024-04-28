@@ -66,9 +66,7 @@ function DashboardList() {
               <option value="Champagne Night Cruise">
                 Champagne Night Cruise
               </option>
-              <option value="Novi Sad & Sremski Karlovci">
-                Novi Sad & Sremski Karlovci
-              </option>
+              <option value="Belgrade Underground">Belgrade Underground</option>
               <option value="Novi Sad & Sremski Karlovci">
                 Belgrade Open Bus Morning
               </option>
@@ -111,17 +109,21 @@ function DashboardList() {
           className="select-button"
           onClick={() => {
             setTotalPrice({
-              eurPrice: filteredList.reduce(function (acc, obj) {
-                return acc + obj.data.ticketPriceEuros;
-              }, 0),
-              dinarPrice: filteredList.reduce(function (acc, obj) {
-                return (
-                  acc +
-                  (obj.data.priceWithDiscount < obj.data.ticketPriceDinars
-                    ? obj.data.priceWithDiscount
-                    : obj.data.ticketPriceDinars)
-                );
-              }, 0),
+              eurPrice: filteredList
+                .filter((el) => el.data.paidWithEuros === true)
+                .reduce(function (acc, obj) {
+                  return acc + obj.data.ticketPriceEuros;
+                }, 0),
+              dinarPrice: filteredList
+                .filter((el) => el.data.paidWithDinars === true)
+                .reduce(function (acc, obj) {
+                  return (
+                    acc +
+                    (obj.data.priceWithDiscount < obj.data.ticketPriceDinars
+                      ? obj.data.priceWithDiscount
+                      : obj.data.ticketPriceDinars)
+                  );
+                }, 0),
             });
           }}
         >
