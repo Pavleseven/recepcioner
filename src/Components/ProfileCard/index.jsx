@@ -17,7 +17,6 @@ function ProfileCard() {
         {reservation
           .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))
           .map((res) => {
-            console.log(res.data)
             return (
               <div
                 className="profile-card-content"
@@ -88,7 +87,7 @@ function ProfileCard() {
                     className="print-icon"
                     style={{ width: "150px", cursor: "pointer" }}
                   /> */}
-                  <SuccessModal ticketInfo={res.data} buttonMode={true}/>
+                  <SuccessModal ticketInfo={res.data} buttonMode={true} />
                   {res.data.checkedIn ? (
                     <img
                       src={`${process.env.PUBLIC_URL}/checkedin.svg`}

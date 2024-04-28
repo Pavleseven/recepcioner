@@ -21,7 +21,7 @@ import { styles } from "./cardHelpers";
 
 const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
   const { userData } = useContext(applicationContext);
-  console.log(ticketInfo)
+
   const tourDate = new Date(ticketInfo.date);
   const meetingTime = dayjs(
     new Date(tourDate - (ticketInfo.meetTime || 1800000))
@@ -139,7 +139,8 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
                 </Text>
                 <Text style={styles.discount}>DISCOUNT WITH PROMO CODE: </Text>
                 <Text style={styles.discount}>
-                  {ticketInfo.ticketPriceDinars - ticketInfo.priceWithDiscount} DINARS
+                  {ticketInfo.ticketPriceDinars - ticketInfo.priceWithDiscount}{" "}
+                  DINARS
                 </Text>
               </View>
             )}

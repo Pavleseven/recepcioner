@@ -14,7 +14,7 @@ import AdminHeader from "../../Components/AdminHeader";
 import { applicationContext } from "../../context";
 
 const AdminPage = () => {
-  const {setList}=useContext(applicationContext)
+  const { setList } = useContext(applicationContext);
   const [openModal, setOpenModal] = useState(false);
   const [clickedTour, setClickedTour] = useState(null);
 
@@ -26,8 +26,8 @@ const AdminPage = () => {
         id: doc.id,
         data: doc.data(),
       }));
-      console.log(docsData);
-      setList(docsData)
+
+      setList(docsData);
     };
 
     fetchAllDocs();

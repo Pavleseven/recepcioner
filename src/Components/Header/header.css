@@ -41,9 +41,9 @@
 .div-header img {
   width: 70px; */
 /* } # sourceMappingURL=header.css.map */
-.profile-name {
+/* .profile-name {
   padding-left: 16px;
-}
+} */
 @media screen and (min-width: 700px) {
   .profile-name {
     font-size: 26px;

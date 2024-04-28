@@ -67,7 +67,6 @@ const WrapperLogin = () => {
           localStorage.setItem("admin", JSON.stringify(adminID));
           navigate("/admin_page");
         } else if (userCredential?.user?.uid === dashboardID) {
-          console.log(dashboardID, userCredential.user.uid);
           setDashboard(dashboardID);
           localStorage.setItem("dashboard", JSON.stringify(dashboardID));
           navigate("/dashboardpage");

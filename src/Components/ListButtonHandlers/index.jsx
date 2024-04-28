@@ -27,15 +27,17 @@ export const ListButtonHandlers = ({ handler, mod, ticketID }) => {
     const docRef = doc(db, "ticketspavle", ticketID);
     const docSnap = await getDoc(docRef);
     const docsData = docSnap.data();
-    await updateDoc(doc(db, "ticketspavle", ticketID), {
-      paidWithDinars: typeOfCurrency === "Dinarima" ? true : false,
-      paidWithEuros: typeOfCurrency === "EUR" ? true : false,
-    });
-    console.log(docsData);
-    console.log(ticketID);
-    console.log(typeOfCurrency);
-    setOpen(false);
-    setShowPayment(true);
+    if (typeOfCurrency === "Dinarima" || typeOfCurrency === "EUR") {
+      await updateDoc(doc(db, "ticketspavle", ticketID), {
+        paidWithDinars: typeOfCurrency === "Dinarima" ? true : false,
+        paidWithEuros: typeOfCurrency === "EUR" ? true : false,
+      });
+      console.log(typeOfCurrency);
+      setOpen(false);
+      setShowPayment(true);
+    } else {
+      setOpen(false);
+    }
   };
 
   return (

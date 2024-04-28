@@ -5,7 +5,8 @@ import "./header.scss";
 import "./header.css";
 
 const Header = () => {
-  const { logOut, user, userData, totalCoins,setReceptionistModal } = useContext(applicationContext);
+  const { logOut, user, userData, totalCoins, setReceptionistModal } =
+    useContext(applicationContext);
   const [tooltip, setTooltip] = useState(false);
   const path = useLocation().pathname;
   return (
@@ -25,7 +26,7 @@ const Header = () => {
             src={`${process.env.PUBLIC_URL}/back.svg`}
             alt="profile-icon"
             className="profile-icon"
-            style={{ width: "120px", cursor: "pointer", marginTop: ".5rem" }}
+            style={{ width: "110px", cursor: "pointer", marginTop: ".5rem" }}
           />
         </Link>
       )}
@@ -56,14 +57,14 @@ const Header = () => {
           ) : (
             ""
           )}
-          <p style={{ fontFamily: "Gagalin", fontSize: "32px" }}>
+          <p style={{ fontFamily: "Gagalin", fontSize: "28px" }}>
             {totalCoins}
           </p>
           <img
             src={`${process.env.PUBLIC_URL}/coindugme.svg`}
             alt="coin-icon"
             className="coin-icon"
-            style={{ width: "45px", cursor: "pointer" }}
+            style={{ width: "40px", cursor: "pointer" }}
           />
         </div>
       ) : (
@@ -84,11 +85,20 @@ const Header = () => {
           // marginBottom: ".5rem",
           // paddingLeft: "1.5rem",
         }}
-        onClick={()=>setReceptionistModal(true)}
+        onClick={() => setReceptionistModal(true)}
       />
       {(path === "/admin_page" || path === "/reservation") && (
         <Link>
-          <button className="log-out" onClick={logOut} style={{background:'#ffde17',height:'30px',width:'80px',border:'2px solid black'}}>
+          <button
+            className="log-out"
+            onClick={logOut}
+            style={{
+              background: "#ffde17",
+              height: "30px",
+              width: "80px",
+              border: "2px solid black",
+            }}
+          >
             Log Out
           </button>
         </Link>

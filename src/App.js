@@ -117,11 +117,11 @@ const App = () => {
 
   const logOut = () => {
     setAccessToken("");
+    localStorage.removeItem("uid");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("admin");
     localStorage.removeItem("dashboard");
     localStorage.removeItem("userData");
-    localStorage.removeItem("uid");
     setIsAdmin(false);
     setUser("");
   };

@@ -33,9 +33,9 @@ function ProfilePage() {
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);
       const docsData2 = docSnap.data();
-      console.log(docsData);
+
       setReservation(data);
-      console.log(user);
+
       setTotalCoins(docsData2.coins + docsData2.freeCoins);
     };
 

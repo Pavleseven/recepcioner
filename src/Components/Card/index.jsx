@@ -13,13 +13,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import ReceptionistModal from "../ReceptionistModal";
 
 function CardContainer({ ride }) {
-  const {
-    allDocs,
-    rides,
-    setShowOverlay,
-    receptionistModal,
-    
-  } = useContext(applicationContext);
+  const { allDocs, rides, setShowOverlay, receptionistModal } =
+    useContext(applicationContext);
   const { setAvailableDates, setSelectedId, setSelectedRide, selectedRide } =
     useContext(bookingContext);
   const [openBooking, setOpenBooking] = useState("");
@@ -113,9 +108,6 @@ function CardContainer({ ride }) {
               fontFamily: "Gagalin",
               margin: "15px auto 15px auto",
             }}
-            onClick={() =>
-              console.log(ride.data.guaranteedSeats, console.log(ride))
-            }
             dangerouslySetInnerHTML={{ __html: ride.data.price }}
           ></div>
           {ride.data.promoCode ? (
@@ -149,7 +141,7 @@ function CardContainer({ ride }) {
                 width: "100px",
                 marginRight: "20px",
               }}
-              src={`${process.env.PUBLIC_URL}/newseats.svg`}
+              src={`${process.env.PUBLIC_URL}/seatsnew.svg`}
               alt="pointer-img"
               onClick={guaranteedModal}
             />
@@ -275,7 +267,6 @@ function CardContainer({ ride }) {
       ) : (
         ""
       )}
-      
     </>
   );
 }

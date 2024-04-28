@@ -7,6 +7,7 @@ import { db } from "../../firebase";
 import { getDocs, collection } from "firebase/firestore";
 
 import { applicationContext } from "../../context";
+import DashAdmin from "../../Components/DashAdmin";
 function DashboardPage() {
   const { setList } = useContext(applicationContext);
   useEffect(() => {
@@ -17,15 +18,15 @@ function DashboardPage() {
         id: doc.id,
         data: doc.data(),
       }));
-      console.log(docsData);
-      setList(docsData)
+
+      setList(docsData);
     };
 
     fetchAllDocs();
   }, []);
   return (
     <div>
-      <AdminHeader />
+      <DashAdmin />
       <DashboardList />
       <Footer />
     </div>

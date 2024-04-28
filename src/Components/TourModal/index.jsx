@@ -43,7 +43,6 @@ const TourModal = ({ handleClose, clickedTour }) => {
     const userRef = doc(db, "users", docsData2.userID);
     const userSnap = await getDoc(userRef);
     const userDocs = userSnap.data();
-    console.log(userDocs);
 
     await updateDoc(doc(db, "users", docsData2.userID), {
       coins:
@@ -82,18 +81,7 @@ const TourModal = ({ handleClose, clickedTour }) => {
             {selectedTour.data.reservations?.map((e, i) => (
               <div key={i} className="reservation-content">
                 <div className="user-email">
-                  <h5
-                    onClick={() =>
-                      console.log(
-                        list.find((el) => el.id === e.id).data.checkedIn ||
-                          list.find((el) => el.id === e.id).data.hasntShown,
-                        e,
-                        list
-                      )
-                    }
-                  >
-                    Seller email:
-                  </h5>
+                  <h5>Seller email:</h5>
                   <p>{e.userEmail}</p>
                 </div>
                 <div className="modal-content">
@@ -140,7 +128,16 @@ const TourModal = ({ handleClose, clickedTour }) => {
                 </div> */}
                 {list.find((el) => el.id === e.id)?.data?.hasntShown ||
                 list.find((el) => el.id === e.id)?.data?.checkedIn ? (
-                  <p style={{textAlign:'center',padding:'.5rem', background:'green',marginTop:'.5rem'}}>This Reservation has already been reviewed.</p>
+                  <p
+                    style={{
+                      textAlign: "center",
+                      padding: ".5rem",
+                      background: "green",
+                      marginTop: ".5rem",
+                    }}
+                  >
+                    This Reservation has already been reviewed.
+                  </p>
                 ) : (
                   <TourB
                     handleCheckIn={handleCheckIn}

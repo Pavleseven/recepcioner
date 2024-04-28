@@ -188,15 +188,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
             values.children * prices.children,
       }),
     });
-    // if (ride.data.promoCode && !values.promoCode) {
-    //   const docRef = doc(db, "users", uid);
-    //   const docSnap = await getDoc(docRef);
-    //   const docsData = docSnap.data();
-    //   await updateDoc(doc(db, "users", uid), {
-    //     coins: (docsData.coins || 0) + values.numberOfPassengers * 500,
-    //   });
-    // }
-    // setSelectedRide(null);
+
     setFreshData(!freshData);
     resetForm();
     setSuccess(true);
@@ -346,23 +338,27 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                   <p style={{ color: "white" }}>tours in this week.</p>
                 </div>
               ) : (
-                filteredDates.map((obj, i) => {
-                  const { date, type, availableSeats, id } = obj;
-                  return (
-                    <TourButton
-                      disabled={availableSeats === 0}
-                      key={i}
-                      onClick={() => {
-                        setSelectedId(id);
-                        setFormModal(true);
-                        handleRef();
-                      }}
-                      isSelected={selectedId === id}
-                      tourDate={dayjs(new Date(date)).format("ddd DD-MM HH:mm")}
-                      type={type}
-                    />
-                  );
-                })
+                filteredDates
+                  .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+                  .map((obj, i) => {
+                    const { date, type, availableSeats, id } = obj;
+                    return (
+                      <TourButton
+                        disabled={availableSeats === 0}
+                        key={i}
+                        onClick={() => {
+                          setSelectedId(id);
+                          setFormModal(true);
+                          handleRef();
+                        }}
+                        isSelected={selectedId === id}
+                        tourDate={dayjs(new Date(date)).format(
+                          "ddd DD-MM HH:mm"
+                        )}
+                        type={type}
+                      />
+                    );
+                  })
               )}
             </div>
           </div>
@@ -404,7 +400,6 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                   className="tour-display"
                   ref={ref}
                   style={{ gap: ".5rem" }}
-                  onClick={console.log(selectedTour)}
                 >
                   {selectedRide && <p>Selected Tour:</p>}
                   {selectedRide && (
@@ -435,7 +430,6 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                           variant="contained"
                           onClick={() => {
                             setFreshData(!freshData);
-                            console.log(ride);
                           }}
                           size="large"
                           style={{ width: "100%" }}
