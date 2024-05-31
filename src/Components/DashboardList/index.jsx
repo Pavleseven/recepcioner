@@ -11,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 function DashboardList() {
-  const { list } = useContext(applicationContext);
+  const { list, rides } = useContext(applicationContext);
   const [filteredList, setFilteredList] = useState([]);
   const [selectValue, setSelectValue] = useState("Select");
   const [selectDate, setSelectDate] = useState("Select");
@@ -35,6 +35,7 @@ function DashboardList() {
         color: "white",
         display: "flex",
         flexDirection: "column",
+        width: "100vw"
       }}
     >
       <div className="select-div">
@@ -49,27 +50,16 @@ function DashboardList() {
                 setFilteredList(
                   list.filter(
                     (el) =>
-                      el.data.boat === e.target.value &&
+                       e.target.value.includes(el.data.boat) &&
                       Date.parse(el.data.date) + 86400000 > Date.now()
                   )
                 );
-                console.log(filteredList);
                 setSelectValue(e.target.value);
               }}
               value={selectValue}
             >
               <option value="select">Select</option>
-              <option value="Key Cruise">Key Cruise</option>
-              <option value="Turtle Cruise">Turtle Cruise</option>
-              <option value="Belgrade Open Bus">Belgrade Open Bus</option>
-              <option value="Bus + Cruise Tour">Bus + Cruise Tour</option>
-              <option value="Champagne Night Cruise">
-                Champagne Night Cruise
-              </option>
-              <option value="Belgrade Underground">Belgrade Underground</option>
-              <option value="Novi Sad & Sremski Karlovci">
-                Belgrade Open Bus Morning
-              </option>
+              {rides.map(item => <option value={item.data.name+item.id}>{item.data.name}</option>)}
             </select>
           </label>
           <label htmlFor="dates">
@@ -158,6 +148,10 @@ function DashboardList() {
                     {el.data.children}
                   </li>
                   <li>
+                    <span>Paid/Not paid: </span>
+                    {JSON.parse(el.data.isPaid) ? "paid" : "not paid"}
+                  </li>
+                  <li>
                     <span>Cena: </span>
                     {el.data.priceWithDiscount < el.data.ticketPriceDinars
                       ? el.data.priceWithDiscount
@@ -227,6 +221,9 @@ function DashboardList() {
                   Cena
                 </TableCell>
                 <TableCell align="center" sx={styleText}>
+                  Paid/Not Paid
+                </TableCell>
+                <TableCell align="center" sx={styleText}>
                   Nacin Placanja
                 </TableCell>
               </TableRow>
@@ -263,6 +260,9 @@ function DashboardList() {
                       ? row.data.priceWithDiscount
                       : row.data.ticketPriceDinars}
                     Dinara / {row.data.ticketPriceEuros}EUR
+                  </TableCell>
+                  <TableCell align="center" sx={styleText}>
+                   {JSON.parse(row.data.isPaid) ? "paid" : "not paid"}
                   </TableCell>
                   <TableCell align="center" sx={styleText}>
                     {row.data.paidWithDinars || row.data.paidWithEuros ? (

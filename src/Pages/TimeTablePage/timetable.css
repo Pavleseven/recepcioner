@@ -1,0 +1,24 @@
+.time-table{
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+  background-color: black;
+  color: white;
+
+}
+.container{
+  text-align: center;
+}
+.button-container{
+  
+  margin-top: 30px;
+}
+.day-img{
+  width: 40vw;
+}
+@media screen and (min-width: 700px) {
+  .day-img{
+    width: 20vw;
+  }
+   
+}

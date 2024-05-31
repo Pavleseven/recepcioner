@@ -15,6 +15,8 @@ import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import DashboardPage from "./Pages/DashboardPage";
 import ReceptionistModal from "./Components/ReceptionistModal";
+import TimeTablePage from "./Pages/TimeTablePage";
+import { ridez } from "./rides";
 const App = () => {
   const theme = createTheme({
     palette: {
@@ -57,7 +59,7 @@ const App = () => {
   const [receptionistModal, setReceptionistModal] = useState(false);
   useEffect(() => {
     const fetchAllDocs = async () => {
-      const collectionRef = collection(db, "tourspavle");
+      const collectionRef = collection(db, "tours2024");
       const querySnapshot = await getDocs(collectionRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -70,12 +72,13 @@ const App = () => {
 
   useEffect(() => {
     const fetchAllRides = async () => {
-      const collectionRef = collection(db, "tour-types");
+      const collectionRef = collection(db, "rides");
       const querySnapshot = await getDocs(collectionRef);
       const ridesData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
+      console.log(JSON.stringify(ridesData))
       setAllRides(ridesData);
     };
 
@@ -88,32 +91,12 @@ const App = () => {
     }, 2000);
   }, []);
 
-  //   useEffect(() => {
-  //     const docRef = doc(db, "tour-types", "turtle-boat");
-  //     setDoc(docRef,{
-  // image:"https://firebasestorage.googleapis.com/v0/b/boat-book.appspot.com/o/images%2Fturtle.jpg?alt=media&token=c2e1d4cf-0f3c-4b67-b5c8-0c88f9fc0875",
-  // isAvailable:true,
-  // meetinPoint:"In front of your hotel",
-  // name:"Turtle Boat",
-  // position:1,
-  // rating: 4.8,
-  // prices:{
-  // adults:3000,
-  // children:3000,
-  // preteens:3000,
-
-  // },
-  // desc: [
-  //   {img: "guide.svg", text:"live tour guide"},
-  //   {img: "no-gift.svg", text:"unlimited soft drinks"},
-  //   {img: "time.svg", text:"1 hour 30 minutes"},
-  //   {img: "no-card.svg", text:"only cash"},
-  //   {img: "distance.svg", text:"15 km round trip"},
-  //   {img: "cash.svg", text:"3000 dinars <br> 25 euro"},
-  // ],
-  // totalSeats:120,
-  //     })
-  //   }, []);
+    // useEffect(() => {
+    //   ridez.forEach((e)=> {
+    //     const docRef = doc(db, "rides", e.id);
+    //     setDoc(docRef,e.data)
+    //   })
+    // }, []);
 
   const logOut = () => {
     setAccessToken("");
@@ -123,6 +106,7 @@ const App = () => {
     localStorage.removeItem("dashboard");
     localStorage.removeItem("userData");
     setIsAdmin(false);
+    setDashboard(false);
     setUser("");
   };
 
@@ -186,6 +170,10 @@ const App = () => {
                   <Route
                     path="/reservation"
                     element={<ReservationPage />}
+                  ></Route>
+                  <Route
+                    path="/time-table"
+                    element={<TimeTablePage />}
                   ></Route>
                   <Route
                     path="*"

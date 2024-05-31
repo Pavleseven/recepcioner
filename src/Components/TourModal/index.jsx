@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import { applicationContext } from "../../context";
 import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import "./tour-modal.scss";
 import { DeleteButton } from "../DeleteButton";
-import { collection, getDocs } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
-import { ModifyButton } from "../ModifyButton";
 import TourB from "../TourB";
 const TourModal = ({ handleClose, clickedTour }) => {
   const { freshData, setFreshData, allDocs, list } =
@@ -19,7 +17,7 @@ const TourModal = ({ handleClose, clickedTour }) => {
   };
   const selectedTour = allDocs.filter((tour) => tour.id === clickedTour.id)[0];
   const handleDelete = async (resID, seats) => {
-    const docRef = doc(db, "tourspavle", selectedTour?.id);
+    const docRef = doc(db, "tours2024", selectedTour?.id);
     const updatedReservations = selectedTour?.data.reservations.filter(
       (reservation) => reservation.id !== resID
     );
@@ -27,17 +25,15 @@ const TourModal = ({ handleClose, clickedTour }) => {
       availableSeats: selectedTour.data.availableSeats + seats,
       reservations: updatedReservations,
     });
+    await deleteDoc(doc(db, "tickets2024", resID));
     setFreshData(!freshData);
   };
-  // const children = selectedTour.data.reservations.reduce(
-  //   (a, b) => a + b.children,
-  //   0
-  // );
+
   const handleCheckIn = async function (res, id) {
-    const docRef = doc(db, "ticketspavle", id);
+    const docRef = doc(db, "tickets2024", id);
     const docSnap = await getDoc(docRef);
     const docsData2 = docSnap.data();
-    await updateDoc(doc(db, "ticketspavle", id), {
+    await updateDoc(doc(db, "tickets2024", id), {
       checkedIn: true,
     });
     const userRef = doc(db, "users", docsData2.userID);
@@ -52,11 +48,11 @@ const TourModal = ({ handleClose, clickedTour }) => {
     });
   };
   const handleNotShown = async function (id) {
-    const docRef = doc(db, "ticketspavle", id);
+    const docRef = doc(db, "tickets2024", id);
     const docSnap = await getDoc(docRef);
     const docsData2 = docSnap.data();
 
-    await updateDoc(doc(db, "ticketspavle", id), {
+    await updateDoc(doc(db, "tickets2024", id), {
       hasntShown: true,
     });
   };

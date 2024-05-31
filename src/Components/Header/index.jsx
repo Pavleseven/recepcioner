@@ -30,7 +30,7 @@ const Header = () => {
           />
         </Link>
       )}
-      {!path.includes("reservation") ? (
+      {path.includes("profile") ? (
         <div
           style={{
             display: "flex",
@@ -77,7 +77,17 @@ const Header = () => {
       ) : (
         ""
       )}
+      {path.includes("reservation") && 
+      <Link to="/time-table">
       <img
+        src={`${process.env.PUBLIC_URL}/48h.svg`}
+        alt="receptionist"
+        style={{ width: "70px", cursor: "pointer" }}
+
+      />
+      </Link>
+       }
+      {!path.includes("reservation") && <img
         src={`${process.env.PUBLIC_URL}/receptionistlogo.svg`}
         alt="receptionist"
         style={{
@@ -86,7 +96,8 @@ const Header = () => {
           // paddingLeft: "1.5rem",
         }}
         onClick={() => setReceptionistModal(true)}
-      />
+      />}
+      
       {(path === "/admin_page" || path === "/reservation") && (
         <Link>
           <button

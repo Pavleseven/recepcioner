@@ -18,7 +18,7 @@ function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchAllDocs = async () => {
-      const collectionRef = collection(db, "ticketspavle");
+      const collectionRef = collection(db, "tickets2024");
       const querySnapshot = await getDocs(collectionRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -29,6 +29,7 @@ function ProfilePage() {
           // return data.data.userEmail.toLowerCase() === user.toLowerCase();
           return data.data.userID === uid;
         })
+        .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))
         .slice(0, 30);
       const docRef = doc(db, "users", uid);
       const docSnap = await getDoc(docRef);

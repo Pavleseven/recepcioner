@@ -30,14 +30,6 @@ const Footer = () => {
       ) : (
         <span>Only for Receptionist Club members</span>
       )}
-      {/* <div style={{ display: "flex", alignItems: "center" }}>
-        <p>{userData.coins ? userData.coins : "You have 0 coins"}</p>
-        <img
-          src={`${process.env.PUBLIC_URL}/coindugme.svg`}
-          alt="coin"
-          style={{ cursor: "pointer", width: "70px", height: "50px" }}
-        />
-      </div> */}
     </div>
   );
 };

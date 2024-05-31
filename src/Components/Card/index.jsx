@@ -80,16 +80,16 @@ function CardContainer({ ride }) {
         <h3>
           Google rating: {ride.data.rating}{" "}
           <span style={{ color: "#F9992E" }}>
-            {[...Array(Math.round(ride.data.rating))].map(() => {
-              return <>&#9733;</>;
+            {[...Array(Math.round(ride.data.rating))].map((x,i) => {
+              return <React.Fragment key={i}>&#9733;</React.Fragment>;
             })}
           </span>{" "}
         </h3>
         <hr />
         <div className="tour-desc">
-          {ride.data.desc.map((e) => {
+          {ride.data.desc.map((e, i) => {
             return (
-              <div>
+              <div key={i}>
                 <img
                   src={`${process.env.PUBLIC_URL}/icons/${e.img}`}
                   alt="card=img"
@@ -163,6 +163,8 @@ function CardContainer({ ride }) {
             }}
             src={`${process.env.PUBLIC_URL}/wa.svg`}
             alt="pointer-img"
+            onClick={()=>{window.open(ride.data.external, "_blank");
+          }}
           />
         ) : (
           <img
@@ -258,12 +260,12 @@ function CardContainer({ ride }) {
         ""
       )}
       {promoModal ? (
-        <PromoModal handlePromo={handlePromo} msg={promoMsg} />
+        <PromoModal handlePromo={handlePromo} promoImg={ride.data.promoImg} />
       ) : (
         ""
       )}
       {itineraryModal ? (
-        <PromoModal handlePromo={guaranteedModal} msg={guaranteedMsg} />
+        <PromoModal handlePromo={guaranteedModal} promoImg={ride.data.promoImg} />
       ) : (
         ""
       )}

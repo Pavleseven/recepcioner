@@ -15,7 +15,7 @@ const AdminTours = ({ handleOpen }) => {
   const [selectedBoat, setSelectedBoat] = useState(boats[0]);
   const [pastTours, setPastTours] = useState(false);
   const handleDelete = async (e) => {
-    await deleteDoc(doc(db, "tourspavle", e.id));
+    await deleteDoc(doc(db, "tours2024", e.id));
     setFreshData(!freshData);
   };
   const filteredDocs = allDocs
@@ -64,11 +64,8 @@ const AdminTours = ({ handleOpen }) => {
             <section key={e.id}>
               <p>{dayjs(e?.data?.date).format("ddd DD-MM HH:mm")}</p>
               <p>{e?.data?.availableSeats} free seats</p>
-              {/* <p>{e.data.time}</p> */}
               <button onClick={() => handleOpen(e)}>Tour Info</button>
-              {/* <button className="del" onClick={() => handleDelete(e)}>
-                Delete
-              </button> */}
+
               <DeleteButton
                 color="error"
                 deleteHandler={() => handleDelete(e)}

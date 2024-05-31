@@ -15,7 +15,6 @@ function ProfileCard() {
         }}
       >
         {reservation
-          .sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))
           .map((res) => {
             return (
               <div

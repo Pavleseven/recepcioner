@@ -2,8 +2,7 @@ import React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { promoMsg } from "../../msgs";
-function PromoModal({ handlePromo,msg}) {
+function PromoModal({ handlePromo, promoImg}) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -15,7 +14,6 @@ function PromoModal({ handlePromo,msg}) {
     bgcolor: "#000000",
     cololr: "#FFF",
     border: "4px solid #FFF",
-
     boxShadow: 24,
     outline: "none",
     p: 4,
@@ -27,7 +25,7 @@ function PromoModal({ handlePromo,msg}) {
       open={true}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      style={{ overflow: "scroll", outline: "none" }}
+      style={{ overflow: "scroll", outline: "none"}}
       fullWidth={true}
     >
       <Box sx={style}>
@@ -50,7 +48,7 @@ function PromoModal({ handlePromo,msg}) {
           >
             Close
           </Button>
-          <p>{msg}</p>
+          <img style={{height:"100%", maxHeight:"700px", objectFit:"contain"}} src={`${process.env.PUBLIC_URL}/promo-slike/${promoImg}`}></img>
         </div>
       </Box>
     </Modal>

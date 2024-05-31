@@ -17,25 +17,16 @@ import {
   arrayUnion,
   getDoc,
   setDoc,
-  collection,
-  getDocs,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
-  // const theme = createTheme({
-  //   palette: {
-  //     daytime: "#1565c0",
-  //     night: "#e65100",
-  //     halfday: "#9C294B",
-  //     fullday: "#80A7BF",
-  //   },
-  // });
+
   const [formModal, setFormModal] = useState(false);
 
   const handleSubmit = async (values, { resetForm }) => {
     const tour = selectedTour;
-    const tourRef = doc(db, "tourspavle", tour.id);
+    const tourRef = doc(db, "tours2024", tour.id);
     const docSnap = await getDoc(tourRef);
     tour.data = docSnap.data();
 
@@ -47,7 +38,6 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
         "This tour has " +
         tour.data.availableSeats +
         (tour.data.availableSeats === 1 ? " seat left" : " seats left");
-      //alert(message)
       setFail(message);
       return;
     }
@@ -56,7 +46,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
         .map(() => Math.floor(Math.random() * 16).toString(16))
         .join("");
     const cardID = genRanHex(6);
-    const docRef = doc(db, "ticketspavle", "" + cardID);
+    const docRef = doc(db, "tickets2024", "" + cardID);
     setDoc(docRef, {
       ...ticketInfo,
       boat: selectedRide.data.name,
@@ -79,14 +69,12 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
         : values.numberOfPassengers * prices.adults +
           values.preteens * prices.preteens +
           values.children * prices.children,
-      // coins:
-      //   ride.data.promoCode && !values.promoCode
-      //     ? values.numberOfPassengers * 500
-      //     : "",
+
       userID: uid,
       provider: window.innerWidth < 700 ? values.provider : false,
       receptionist: window.innerWidth < 700 ? false : values.receptionist,
       meetingPoint: ride.data.meetinPoint,
+      meetingPointQR: ride.data.meetingPointQR,
       meetLink: ride.data.meetLink || "#",
       meetTime: ride.data.meetTime || 0,
       prices: prices,
@@ -125,15 +113,13 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
       preteens: values.preteens,
       promoCode: values.promoCode,
       specialPromo: ride.data.promoCode ? true : false,
-      // coins:
-      //   ride.data.promoCode && !values.promoCode
-      //     ? values.numberOfPassengers * 500
-      //     : "",
       userID: uid,
       receptionist: values.receptionist,
       meetingPoint: ride.data.meetinPoint,
+      meetingPointQR: ride.data.meetingPointQR,
       meetLink: ride.data.meetLink || "#",
       meetTime: ride.data.meetTime || 1800000,
+      
       prices: prices,
       ticketPriceDinars:
         values.numberOfPassengers * prices.adults +
@@ -629,7 +615,7 @@ const FormCard = forwardRef(({ openBooking, setOpenBooking, ride }, ref) => {
                         <Field
                           type="text"
                           name="roomNumber"
-                          placeholder="Number of room"
+                          placeholder="One name"
                           className="form-field"
                           style={{
                             backgroundColor: "white",

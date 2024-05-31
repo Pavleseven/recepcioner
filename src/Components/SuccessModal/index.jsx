@@ -12,16 +12,19 @@ import {
   Link,
   // Font
 } from "@react-pdf/renderer";
-import qrCode from "../../assets/qr-code.jpg";
-import bus1Code from "../../assets/belgradeopenbus1.png";
-import bus2Code from "../../assets/bgopenbus2qr.png";
+import cruisebelgradeqr from "../../assets/cruise-belgrade-qr.jpg";
+import pariskaqr from "../../assets/pariska-qr.png";
+import skupstinaqr from "../../assets/skupstina-qr.png";
 import barcode from "../../assets/barcode.png";
+import hotel from "../../assets/hotel.png"
 import dayjs from "dayjs";
 import { styles } from "./cardHelpers";
 
+const qrcodes = {cruisebelgradeqr, pariskaqr, skupstinaqr, hotel}
+
 const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
   const { userData } = useContext(applicationContext);
-
+  const ride = selectedRide?.data.name || ticketInfo?.boat;
   const tourDate = new Date(ticketInfo.date);
   const meetingTime = dayjs(
     new Date(tourDate - (ticketInfo.meetTime || 1800000))
@@ -33,7 +36,7 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
       <Page size={["250"]}>
         <View style={styles.page}>
           <Text
-            style={{ fontSize: "12px", color: "red", marginBottom: "1.5rem" }}
+            style={{ fontSize: "12px", color: "red"}}
           >
             Napomena : Ovo nije fiskalni racun
           </Text>
@@ -49,25 +52,20 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
               Scan or click QR code for location
             </Text>
           )}
-          {ticketInfo.meetingPoint === "In front of your Hotel" ? (
+          {/* {ticketInfo.meetingPoint === "In front of your Hotel" ? (
             ""
-          ) : (
+          ) :  */}
+          (
             <Link
               style={styles.qrCode}
               target="_blank"
               src={ticketInfo.meetLink || "#"}
             >
               <Image
-                src={
-                  ticketInfo?.boat === "Belgrade Open Bus"
-                    ? bus2Code
-                    : ticketInfo.boat === "Belgrade Open Bus Morning"
-                    ? bus1Code
-                    : qrCode
-                }
+                src={qrcodes[ticketInfo.meetingPointQR]}
               />
             </Link>
-          )}
+          )
           <Text style={styles.meetPointTime}>
             {"Meeting point time: " + meetingTime} h
           </Text>
@@ -107,16 +105,16 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
               </Text>
             </View>
           </View>
-          <View>
+            {ticketInfo.boat === "Belgrade Open Bus Morning" ?  <View>
             <Text style={styles.passengersTitleWithTopMarging}>
               Adults: {ticketInfo.numberOfPassengers} *{" "}
-              {ticketInfo.prices.adults} DINARS
+              {ticketInfo.prices.adults - 500} DINARS
             </Text>
 
             {ticketInfo.preteens && (
               <Text style={styles.passengersTitle}>
                 Kids 8-12 YEARS: {ticketInfo.preteens} *{" "}
-                {ticketInfo.prices.preteens} DINARS
+                {ticketInfo.prices.preteens - 500} DINARS
               </Text>
             )}
             {ticketInfo.children && (
@@ -125,12 +123,17 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
                 {ticketInfo.prices.children
                   ? ticketInfo.children +
                     " * " +
-                    ticketInfo.prices.children +
+                    (ticketInfo.prices.children  - 500) +
                     " DINARS"
                   : ticketInfo.children + " FOR FREE"}{" "}
               </Text>
             )}
-
+            <Text style={styles.passengersTitleWithTopMarging}>
+              reservation fee: {ticketInfo.children + ticketInfo.numberOfPassengers + ticketInfo.preteens} * 200 = {(ticketInfo.children + ticketInfo.numberOfPassengers + ticketInfo.preteens) * 200} DINARS
+            </Text>            
+            <Text style={styles.passengersTitleWithTopMarging}>
+            guaranted seets: {ticketInfo.children + ticketInfo.numberOfPassengers + ticketInfo.preteens} * 300 = {(ticketInfo.children + ticketInfo.numberOfPassengers + ticketInfo.preteens) * 300} DINARS
+            </Text>
             {ticketInfo.promoCode && (
               <View>
                 <Text style={styles.discount}>PRICE: </Text>
@@ -144,7 +147,44 @@ const SuccessModal = ({ setSuccess, ticketInfo, selectedRide, buttonMode }) => {
                 </Text>
               </View>
             )}
-          </View>
+          </View>:
+                    <View>
+                    <Text style={styles.passengersTitleWithTopMarging}>
+                      Adults: {ticketInfo.numberOfPassengers} *{" "}
+                      {ticketInfo.prices.adults} DINARS
+                    </Text>
+        
+                    {ticketInfo.preteens && (
+                      <Text style={styles.passengersTitle}>
+                        Kids 8-12 YEARS: {ticketInfo.preteens} *{" "}
+                        {ticketInfo.prices.preteens} DINARS
+                      </Text>
+                    )}
+                    {ticketInfo.children && (
+                      <Text style={styles.passengersTitle}>
+                        Kids 0-7 YEARS:{" "}
+                        {ticketInfo.prices.children
+                          ? ticketInfo.children +
+                            " * " +
+                            ticketInfo.prices.children +
+                            " DINARS"
+                          : ticketInfo.children + " FOR FREE"}{" "}
+                      </Text>
+                    )}
+                    {ticketInfo.promoCode && (
+                      <View>
+                        <Text style={styles.discount}>PRICE: </Text>
+                        <Text style={styles.discount}>
+                          {ticketInfo.ticketPrice} DINARS
+                        </Text>
+                        <Text style={styles.discount}>DISCOUNT WITH PROMO CODE: </Text>
+                        <Text style={styles.discount}>
+                          {ticketInfo.ticketPriceDinars - ticketInfo.priceWithDiscount}{" "}
+                          DINARS
+                        </Text>
+                      </View>
+                    )}
+                  </View>}
         </View>
         {/* </View> */}
         <View style={{ padding: "10px" }}>

@@ -68,7 +68,15 @@ function ReceptionistModal({}) {
               className="ul-rec"
             >
               <li className="li-item">
-                <p className="rec-p">Key Cruise</p>
+                <p className="rec-p">Cruise Belgrade 1</p>
+                <ul>
+                  <li>odrasli: 500 dinara</li>
+                  <li>deca 8-12 godina: 250 dinara</li>
+                </ul>
+              </li>
+
+              <li className="li-item">
+                <p className="rec-p">Cruise Belgrade 2</p>
                 <ul>
                   <li>odrasli: 400 dinara</li>
                   <li>deca 8-12 godina: 200 dinara</li>
@@ -76,17 +84,32 @@ function ReceptionistModal({}) {
               </li>
 
               <li className="li-item">
-                <p className="rec-p">Turtle Cruise</p>
+                <p className="rec-p">Cruise Belgrade 3</p>
                 <ul>
                   <li>odrasli: 500 dinara</li>
                   <li>deca 8-12 godina: 250 dinara</li>
                 </ul>
               </li>
+
               <li className="li-item">
-                <p className="rec-p">Belgrade Open-Bus</p>
+                <p className="rec-p">Open Bus Morning</p>
                 <ul>
-                  <li>odrasli:300 dinara</li>
+                  <li>odrasli:200 dinara</li>
+                  <li>deca 0-12 godina:100 dinara</li>
+                </ul>
+              </li>
+              <li className="li-item">
+                <p className="rec-p">Open Bus Afternoon</p>
+                <ul>
+                  <li>odrasli:350 dinara</li>
                   <li>deca 0-12 godina:150 dinara</li>
+                </ul>
+              </li>
+              <li className="li-item">
+                <p className="rec-p">Open Bus + Cruise Tour</p>
+                <ul>
+                  <li>odrasli:850 dinara</li>
+                  <li>deca 0-12 godina:400 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
@@ -98,7 +121,7 @@ function ReceptionistModal({}) {
               <li className="li-item">
                 <p className="rec-p">Belgrade Undergroud</p>
                 <ul>
-                  <li>odrasli/deca: 500 dinara</li>
+                  <li>odrasli/deca: 600 dinara</li>
                 </ul>
               </li>
               <li className="li-item">
@@ -122,13 +145,7 @@ function ReceptionistModal({}) {
                   <li>deca 0-12 godina: 750 dinara</li>
                 </ul>
               </li>
-              <li className="li-item">
-                <p className="rec-p">Bohemian Nights</p>
-                <ul>
-                  <li>odrasli:900 dinara</li>
-                  <li>deca 0-12 godina: 750 dinara</li>
-                </ul>
-              </li>
+            
               <li className="li-item">
                 <p className="rec-p">Medieval Monasteries and Resava Cave</p>
                 <ul>
@@ -139,8 +156,8 @@ function ReceptionistModal({}) {
               <li className="li-item">
                 <p className="rec-p">Belgrade Big City Tour</p>
                 <ul>
-                  <li>odrasli: 1300 dinara</li>
-                  <li>deca 0-12 godina: 650 dinara</li>
+                  <li>odrasli: 600 dinara</li>
+                  <li>deca 0-12 godina: 300 dinara</li>
                 </ul>
               </li>
             </ul>

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://pavleseven.github.io/recepcioner",
+  "homepage": "https://pavleseven.github.io",
   "name": "boat-app",
   "version": "0.1.0",
   "private": false,
@@ -15,7 +15,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "dayjs": "^1.11.7",
     "firebase": "^9.22.0",
-    "flag-icons": "^6.11.1",
     "formik": "^2.2.9",
     "moment": "^2.29.4",
     "react": "^18.2.0",

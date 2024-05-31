@@ -20,7 +20,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     const fetchAllDocs = async () => {
-      const collectionRef = collection(db, "ticketspavle");
+      const collectionRef = collection(db, "tickets2024");
       const querySnapshot = await getDocs(collectionRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,

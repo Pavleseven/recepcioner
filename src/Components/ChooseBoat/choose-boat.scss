@@ -112,3 +112,49 @@
     }
   }
 }
+.marquee-parent {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 90px;
+  padding-top: 10px;
+}
+.marquee-child {
+  display: block;
+  font-size: xxx-large;
+  width: 8000px;
+  /* width of your text div */
+  height: 90px;
+  /* height of your text div */
+  position: absolute;
+  animation: marquee 90s linear infinite; /* change 5s value to your desired speed */
+}
+.marquee-child:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -8000px /* same as your text width */
+  }
+}
+
+.fi-eu {
+  background-image: url(../../../public/icons/eu.svg);
+}
+.fi-rs {
+  background-image: url(../../../public/icons/rs.svg);
+}
+.fi {
+  display: inline-block;
+  line-height: 1em;
+  position: relative;
+  width: 1.33333333em;
+  background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 20px;
+}
